@@ -38,6 +38,15 @@ modelo:
 - Relatorio: bloqueia linguagem de recomendacao ou reescrita.
 - Fallback: se o relatorio violar os guardrails, um relatorio deterministico e gerado a partir da analise validada.
 
+## Outros padrões agentic
+
+- Workflow agent
+- Reflection / critique controlada
+- Planning explícito
+- Tool use restrito
+- Structured output
+- Human-auditable trace
+
 ## Execucao
 
 ```powershell
