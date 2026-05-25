@@ -17,9 +17,9 @@ from app.schemas.models import FinalOutput
 from app.services.audit_logger import AuditLogger
 from app.services.heuristic_backend import HeuristicInvestAnalyzer, HeuristicReportGenerator
 from app.services.llm_client import (
+    GeminiInvestAnalyzer,
+    GeminiReportGenerator,
     InvestAnalyzer,
-    LangChainInvestAnalyzer,
-    LangChainReportGenerator,
     ReportGenerator,
 )
 from app.services.prompt_registry import PromptRegistry
@@ -99,9 +99,8 @@ def build_agent(
         analyzer = HeuristicInvestAnalyzer()
         report_generator = HeuristicReportGenerator()
     elif backend == "llm":
-        analyzer = LangChainInvestAnalyzer(settings.llm_model, temperature=0.0)
-        report_generator = LangChainReportGenerator(settings.llm_model, temperature=0.0)
+        analyzer = GeminiInvestAnalyzer(settings.llm_model, temperature=0.0)
+        report_generator = GeminiReportGenerator(settings.llm_model, temperature=0.0)
     else:
         raise ValueError("backend must be 'llm' or 'heuristic'")
     return InvestAgent(settings, analyzer, report_generator)
-

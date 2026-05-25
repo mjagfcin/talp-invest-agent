@@ -50,15 +50,15 @@ modelo:
 ## Execucao
 
 ```powershell
-pip install -e .[dev]
-$env:OPENAI_API_KEY="..."
-talp-invest-agent "Como cliente, quero redefinir minha senha para recuperar acesso a minha conta."
+uv run --extra dev pytest
+$env:GOOGLE_API_KEY="..."
+uv run talp-invest-agent "Como cliente, quero redefinir minha senha para recuperar acesso a minha conta."
 ```
 
 Para desenvolvimento sem chamada externa ao modelo:
 
 ```powershell
-talp-invest-agent --backend heuristic "Como administrador, quero melhorar o sistema."
+uv run talp-invest-agent --backend heuristic "Como administrador, quero melhorar o sistema."
 ```
 
 O backend `heuristic` existe para testes locais e regressao. O backend padrao e `llm`.
@@ -66,7 +66,11 @@ O backend `heuristic` existe para testes locais e regressao. O backend padrao e 
 ## Variaveis de ambiente
 
 ```text
-OPENAI_API_KEY
-TALP_LLM_MODEL=gpt-4.1-mini
+GOOGLE_API_KEY
+GEMINI_API_KEY
+TALP_LLM_MODEL=gemini-2.5-flash
 TALP_AUDIT_LOG_DIR=logs/audit
 ```
+
+`GOOGLE_API_KEY` e a variavel preferida pelo pacote LangChain Google GenAI.
+`GEMINI_API_KEY` tambem e aceita pelo agente como alias.

@@ -22,6 +22,5 @@ def load_settings(project_root: Path | None = None) -> Settings:
         project_root=root,
         prompt_dir=root / "prompts",
         audit_log_dir=audit_dir,
-        llm_model=os.getenv("TALP_LLM_MODEL", "gpt-4.1-mini"),
+        llm_model=os.getenv("TALP_LLM_MODEL", "gemini-2.5-flash"),
     )
-
