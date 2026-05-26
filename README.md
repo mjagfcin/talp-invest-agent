@@ -63,6 +63,35 @@ uv run talp-invest-agent --backend heuristic "Como administrador, quero melhorar
 
 O backend `heuristic` existe para testes locais e regressao. O backend padrao e `llm`.
 
+## Execucao com Docker
+
+Construa a imagem:
+
+```powershell
+docker build -t talp-invest-agent .
+```
+
+Execute sem chamada externa ao modelo:
+
+```powershell
+docker run --rm talp-invest-agent --backend heuristic "Como administrador, quero melhorar o sistema."
+```
+
+Execute com LLM usando variaveis de ambiente:
+
+```powershell
+docker run --rm --env-file .env -v "${PWD}/logs:/app/logs" talp-invest-agent "Como cliente, quero redefinir minha senha para recuperar acesso a minha conta."
+```
+
+Em Linux/macOS, use a forma equivalente para montar os logs:
+
+```bash
+docker run --rm --env-file .env -v "$(pwd)/logs:/app/logs" talp-invest-agent "Como cliente, quero redefinir minha senha para recuperar acesso a minha conta."
+```
+
+Use `.env.example` como referencia para criar um arquivo `.env` local. O volume
+em `/app/logs` preserva os arquivos de auditoria gerados pelo container.
+
 ## Variaveis de ambiente
 
 ```text
